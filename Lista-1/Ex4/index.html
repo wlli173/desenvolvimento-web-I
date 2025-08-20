@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TechNews - Blog de Notícias</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 1em;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 1em;
+            align-items: center;
+        }
+
+        .menu a {
+            color: #fff;
+            margin-left: 1.5em;
+            text-decoration: underline;
+            font-size: 1em;
+        }
+
+        .container {
+            display: flex;
+            gap: 2em;
+            margin-top: 2em;
+        }
+
+        .destaque {
+            background-color: #fff;
+            padding: 1.5em;
+            flex: 2;
+        }
+
+        .destaque h2 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .destaque p {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .lateral {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            flex: 1;
+            margin-right: 2em;
+        }
+
+        .post-menor {
+            background-color: #fff;
+            padding: 1em;
+            border: 1px solid #ddd;
+            font-size: 1em;
+        }
+
+        .post-menor:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: yellow;
+            padding: 0.2em 0.5em;
+            margin-right: 0.5em;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">TechNews</div>
+        <nav class="menu">
+            <a href="#">Home</a>
+            <a href="#">Categorias</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="destaque">
+            <h2>Grande Lançamento no Mundo da IA</h2>
+            <p>
+                <span class="tag">Destaque</span>
+                Empresas estão lançando novas soluções baseadas em inteligência artificial.
+            </p>
+        </section>
+
+        <aside class="lateral">
+            <div class="post-menor">Notícia 1</div>
+            <div class="post-menor">Notícia 2</div>
+        </aside>
+    </main>
+</body>
+
+</html>

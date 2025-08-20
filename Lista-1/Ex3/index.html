@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Evento</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #111;
+        }
+
+        /* Barra de informações rápidas */
+        .info-bar {
+            background-color: #ddd;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        /* Banner principal */
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            background: #e0e0e0;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 2rem;
+            color: #444;
+            text-shadow: 1px 1px 2px #ccc;
+        }
+
+        .banner h1:hover {
+            color: #007BFF;
+            transition: color 0.5s ease;
+        }
+
+        /* Seção sobre o evento */
+        .sobre-evento {
+            background: #fff;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .sobre-evento h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .sobre-evento p {
+            font-size: 1rem;
+            line-height: 1.5em;
+        }
+
+        .sobre-evento .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        /* Cards das palestras */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+        }
+
+        span:hover {
+            font-weight: bold;
+            transition: all 0.5s ease;
+            color: #007BFF;
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra de informações rápidas -->
+    <div class="info-bar">
+        📍 Local: Centro de Convenções | 📅 Data: 15/10/2025 | ⏰ Horário: 14h às 20h
+    </div>
+
+    <!-- Banner principal -->
+    <div class="banner">
+        <h1>Workshop de Tecnologia – 2025</h1>
+    </div>
+
+    <!-- Seção de descrição -->
+    <section class="sobre-evento">
+        <h2>Sobre o evento</h2>
+        <p>
+            O <span class="highlight">Workshop de Tecnologia</span> traz palestrantes renomados e temas de ponta no
+            setor de TI.
+        </p>
+    </section>
+
+    <!-- Cards de palestras -->
+    <section class="cards-container">
+        <div class="card">
+            <h3>Palestra 1</h3>
+            <p>Inteligência Artificial</p>
+        </div>
+        <div class="card">
+            <h3>Palestra 2</h3>
+            <p>Segurança Cibernética</p>
+        </div>
+        <div class="card">
+            <h3>Palestra 3</h3>
+            <p>Desenvolvimento Web</p>
+        </div>
+    </section>
+
+</body>
+
+</html>
