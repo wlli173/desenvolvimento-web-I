@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemplo DOM</title>
+</head>
+<body>
+
+  <p id="meuParagrafo">Este é um texto inicial.</p>
+  <button id="botaoMudar">Clique para mudar o texto</button>
+
+  <script>
+    const paragrafo = document.getElementById("meuParagrafo");
+    const botao = document.getElementById("botaoMudar");
+
+    botao.addEventListener("click", function() {
+      paragrafo.textContent = "O texto foi alterado!";
+    });
+  </script>
+
+</body>
+</html>

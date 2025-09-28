@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Formulário de Contato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #mensagem.erro {
+            color: red;
+        }
+
+        #mensagem.sucesso {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Contato</h1>
+
+        <!-- Mantido o parágrafo e botão como no seu código base -->
+        <p id="mensagem">Preencha o formulário abaixo e clique em Enviar.</p>
+
+        <button id="iniciar">Enviar</button>
+
+        <form id="formContato">
+            <label>Nome:</label>
+            <input type="text" id="nome">
+
+            <label>E-mail:</label>
+            <input type="email" id="email">
+
+            <label>Telefone:</label>
+            <input type="text" id="telefone">
+
+            <label>Mensagem:</label>
+            <textarea id="mensagemContato" rows="4"></textarea>
+        </form>
+    </div>
+
+    <script>
+        const botao = document.getElementById('iniciar');
+        const mensagem = document.getElementById('mensagem');
+
+        botao.addEventListener('click', () => {
+            try {
+                const nome = document.getElementById("nome").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const telefone = document.getElementById("telefone").value.trim();
+                const texto = document.getElementById("mensagemContato").value.trim();
+
+                if (!nome || !email || !telefone || !texto) {
+                    mensagem.textContent = "Por favor, preencha todos os campos antes de enviar.";
+                    mensagem.className = "erro";
+                    return;
+                }
+
+                mensagem.textContent = "✅ Mensagem enviada com sucesso!";
+                mensagem.className = "sucesso";
+
+            } catch (error) {
+                mensagem.textContent = "Ocorreu um erro: " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

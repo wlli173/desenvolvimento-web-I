@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulação de Classe</title>
+  <style>
+    .destaque {
+      color: red;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <p id="texto">Este é um texto que terá a classe adicionada ou removida.</p>
+  <button id="botaoClasse">Adicionar / Remover Classe</button>
+
+  <script>
+    const texto = document.getElementById("texto");
+    const botao = document.getElementById("botaoClasse");
+
+    botao.addEventListener("click", function() {
+      if (texto.classList.contains("destaque")) {
+        texto.classList.remove("destaque"); // remove a classe
+      } else {
+        texto.classList.add("destaque"); // adiciona a classe
+      }
+    });
+  </script>
+
+</body>
+</html>
