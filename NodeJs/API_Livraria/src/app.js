@@ -4,7 +4,7 @@ const app = require("./config/express")
 const routes = require("./routes");
 
 // Configura o middleware de tratamento de erros
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("./middlewares/errorHandler");
 
 // Configura as rotas com prefixo /api
 app.use("/api", routes);
