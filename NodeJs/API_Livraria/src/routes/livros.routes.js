@@ -5,14 +5,13 @@ const router = express.Router();
 const LivrosController = require("../controllers/livros.controller");
 const livrosController = new LivrosController();
 
-// Middlewares
-const { validarLivro, validarParamId } = require("../middlewares/validar/livros.validar");
 
-router.get("/", (req, res, next) => livrosController.listarLivros(req, res, next));
+router.get("/", livrosController.listarLivros.bind(livrosController));
 router.get("/categoria/:categoria", (req, res, next) => livrosController.buscarLivroPorCategoria(req, res, next));
-router.get("/:id", validarParamId, (req, res, next) => livrosController.buscarLivroPorId(req, res, next));
-router.post("/", validarLivro, (req, res, next) => livrosController.criarLivro(req, res, next));
-router.put("/:id", validarParamId, validarLivro, (req, res, next) => livrosController.atualizarLivro(req, res, next));
-router.delete("/:id", validarParamId, (req, res, next) => livrosController.removerLivro(req, res, next));
+router.get("/:id", livrosController.buscarLivroPorId.bind(livrosController));
+router.post("/", livrosController.criarLivro.bind(livrosController));
+router.put("/:id", livrosController.atualizarLivro.bind(livrosController));
+router.delete("/:id", livrosController.removerLivro.bind(livrosController));
+
 
 module.exports = router;
