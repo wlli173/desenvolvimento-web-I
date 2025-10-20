@@ -1,16 +1,128 @@
 [
-    {
-        "id": 1,
-        "titulo": "Clean Code",
-        "autor": "Robert C. Martin",
-        "categoria": "Programação",
-        "ano": 2008
-    },
-    {
-        "id": 2,
-        "titulo": "O Programador Pragmático",
-        "autor": "Andrew Hunt",
-        "categoria": "Programação",
-        "ano": 1999
-    }
+  {
+    "id": 1,
+    "titulo": "Clean Code",
+    "autor": "Robert C. Martin",
+    "categoria": "Programação",
+    "ano": 2008,
+    "editora": "Prentice Hall",
+    "numeroPaginas": 464
+  },
+  {
+    "id": 2,
+    "titulo": "O Programador Pragmático",
+    "autor": "Andrew Hunt",
+    "categoria": "Programação",
+    "ano": 1999,
+    "editora": "Addison-Wesley",
+    "numeroPaginas": 352
+  },
+  {
+    "id": 3,
+    "titulo": "O Senhor dos Anéis: A Sociedade do Anel (Edição Revisada)",
+    "autor": "J.R.R. Tolkien",
+    "categoria": "Fantasia",
+    "ano": 1954,
+    "editora": "Allen & Unwin",
+    "numeroPaginas": 430
+  },
+  {
+    "id": 4,
+    "titulo": "Design Patterns",
+    "autor": "Erich Gamma",
+    "categoria": "Programação",
+    "ano": 1994,
+    "editora": "Addison-Wesley",
+    "numeroPaginas": 395
+  },
+  {
+    "id": 5,
+    "titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+    "autor": "J.R.R. Tolkien",
+    "categoria": "Fantasia",
+    "ano": 1954,
+    "editora": "Allen & Unwin",
+    "numeroPaginas": 423
+  },
+  {
+    "id": 6,
+    "titulo": "O Senhor dos Anéis: As Duas Torres",
+    "autor": "J.R.R. Tolkien",
+    "categoria": "Fantasia",
+    "ano": 1954,
+    "editora": "Allen & Unwin",
+    "numeroPaginas": 352
+  },
+  {
+    "id": 7,
+    "titulo": "O Senhor dos Anéis: O Retorno do Rei",
+    "autor": "J.R.R. Tolkien",
+    "categoria": "Fantasia",
+    "ano": 1955,
+    "editora": "Allen & Unwin",
+    "numeroPaginas": 416
+  },
+  {
+    "id": 8,
+    "titulo": "Harry Potter e a Pedra Filosofal",
+    "autor": "J.K. Rowling",
+    "categoria": "Fantasia",
+    "ano": 1997,
+    "editora": "Rocco",
+    "numeroPaginas": 223
+  },
+  {
+    "id": 9,
+    "titulo": "Harry Potter e a Câmara Secreta",
+    "autor": "J.K. Rowling",
+    "categoria": "Fantasia",
+    "ano": 1998,
+    "editora": "Rocco",
+    "numeroPaginas": 251
+  },
+  {
+    "id": 10,
+    "titulo": "JavaScript: O Guia Definitivo",
+    "autor": "David Flanagan",
+    "categoria": "Programação",
+    "ano": 2020,
+    "editora": "O'Reilly",
+    "numeroPaginas": 1096
+  },
+  {
+    "id": 11,
+    "titulo": "Aprendendo Python",
+    "autor": "Mark Lutz",
+    "categoria": "Programação",
+    "ano": 2013,
+    "editora": "Novatec",
+    "numeroPaginas": 1600
+  },
+  {
+    "id": 12,
+    "titulo": "Clean Architecture",
+    "autor": "Robert C. Martin",
+    "categoria": "Programação",
+    "ano": 2017,
+    "editora": "Prentice Hall",
+    "numeroPaginas": 432
+  },
+  {
+    "id": 13,
+    "titulo": "O Código Da Vinci",
+    "autor": "Dan Brown",
+    "categoria": "Suspense",
+    "ano": 2003,
+    "editora": "Rocco",
+    "numeroPaginas": 489
+  },
+  {
+    "id": 14,
+    "titulo": "Anjos e Demônios",
+    "autor": "Dan Brown",
+    "categoria": "Suspense",
+    "ano": 2000,
+    "editora": "Rocco",
+    "numeroPaginas": 616
+  }
 ]

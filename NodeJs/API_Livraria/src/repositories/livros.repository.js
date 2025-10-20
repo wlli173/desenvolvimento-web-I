@@ -33,12 +33,12 @@ class LivrosRepository extends RepositoryBase {
     return livros.filter((l) => l.categoria === categoria);
   }
 
-  async create(livrosData) {
+  async create(livroData) {
     const livros = await this.findAll();
     const novoId = await this.getNextId();
-    const novoLivro = new Livro({ id: novoId, ...livroData });
+    const novoLivro = { id: novoId, ...livroData };
     livros.push(novoLivro);
-    await this._saveToFile(livros.map(l => l.toJSON()));
+    await this._saveToFile(livros);
     return novoLivro;
   }
 
@@ -46,7 +46,7 @@ class LivrosRepository extends RepositoryBase {
     const livros = await this.findAll();
     const indice = livros.findIndex((l) => l.id === id);
 
-    if (indice === -1){
+    if (indice === -1) {
       const error = new Error("Livro não encontrado");
       error.statusCode = 404;
       throw error;
@@ -64,7 +64,7 @@ class LivrosRepository extends RepositoryBase {
     const livros = await this.findAll();
     const indice = livros.findIndex((l) => l.id === id);
 
-    if (indice === -1){
+    if (indice === -1) {
       const error = new Error("Livro não encontrado");
       error.statusCode = 404;
       throw error;
