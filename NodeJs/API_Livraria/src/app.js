@@ -1,4 +1,6 @@
 const app = require("./config/express")
+const db = require("./database/sqlite");
+db.init(); // garante que a tabela exista antes das rotas
 
 // Todas as rotas da aplicação (centralizadas)
 const routes = require("./routes");

@@ -1,91 +1,43 @@
-const fs = require("fs");
-const path = require("path");
-const RepositoryBase = require("./repository.interface");
 const Livro = require("../models/livro.model");
-const { error } = require("console");
+const db = require("../database/sqlite");
 
-class LivrosRepository extends RepositoryBase {
-  constructor() {
-    super();
-    this.caminhoArquivo = path.join(__dirname, "../data/livros.json");
-  }
-
+class LivrosRepository {
   async findAll() {
-    const dados = await this._lerArquivo();
-    const lista = JSON.parse(dados);
-    return lista.map(item => Livro.fromJSON(item));
+    const rows = await db.all("SELECT * FROM livros ORDER BY id ASC");
+    return rows.map(r => Livro.fromJSON(r));
   }
-
   async findById(id) {
-    const livros = await this.findAll();
-    return livros.find((l) => l.id === id);
+    const row = await db.get("SELECT * FROM livros WHERE id = ?", [id]);
+    return row ? Livro.fromJSON(row) : null;
+  }
+  async create(data) {
+    const novo = new Livro({ id: null, ...data });
+    const res = await db.run(
+      "INSERT INTO livros (titulo, autor, categoria, ano, editora, numeroPaginas) VALUES (?, ?, ?, ?, ?, ?)",
+      [novo.titulo, novo.autor, novo.categoria, novo.ano]
+    );
+    return this.findById(res.id);
   }
 
-  async getNextId() {
-    const livros = await this.findAll();
-    if (livros.length === 0) return 1;
-    return Math.max(...livros.map(l => l.id)) + 1;
-  }
-
-
-  async findByCategoria(categoria) {
-    const livros = await this.findAll();
-    return livros.filter((l) => l.categoria === categoria);
-  }
-
-  async create(livroData) {
-    const livros = await this.findAll();
-    const novoId = await this.getNextId();
-    const novoLivro = { id: novoId, ...livroData };
-    livros.push(novoLivro);
-    await this._saveToFile(livros);
-    return novoLivro;
-  }
-
-  async update(id, dadosAtualizados) {
-    const livros = await this.findAll();
-    const indice = livros.findIndex((l) => l.id === id);
-
-    if (indice === -1) {
-      const error = new Error("Livro não encontrado");
-      error.statusCode = 404;
-      throw error;
-    }
-
-    livros[indice] = new Livro({ ...livros[indice], ...dadosAtualizados });
-    await this._saveToFile(livros.map(l => l.toJSON()));
-
-    return livros[indice];
-
+  async update(id, dados) {
+    const atual = new Livro({ id, ...dados });
+    await db.run(
+      "UPDATE livros SET titulo = ?, autor = ?, categoria = ?, ano = ?, editora = ?, numeroPaginas = ? WHERE id = ?",
+      [atual.titulo, atual.autor, atual.categoria, atual.ano, atual.editora, atual.numeroPaginas, id]
+    );
+    return this.findById(id);
   }
 
   async delete(id) {
-
-    const livros = await this.findAll();
-    const indice = livros.findIndex((l) => l.id === id);
-
-    if (indice === -1) {
-      const error = new Error("Livro não encontrado");
-      error.statusCode = 404;
-      throw error;
+    const existente = await this.findById(id);
+    if (!existente) {
+      const e = new Error("Livro não encontrado");
+      e.statusCode = 404; throw e;
     }
-
-    const livroRemovido = livros[indice];
-    await this._saveToFile(livros.map(l => l.toJSON()));
-
-    return livroRemovido;
+    await db.run("DELETE FROM livros WHERE id = ?", [id]);
+    return existente;
   }
 
-  async _saveToFile(data) {
-    fs.writeFileSync(
-      this.caminhoArquivo,
-      JSON.stringify(data, null, 2),
-      "utf8"
-    );
-  }
-  async _lerArquivo() {
-    return await fs.promises.readFile(this.caminhoArquivo, "utf8");
-  }
 }
 
 module.exports = LivrosRepository;
