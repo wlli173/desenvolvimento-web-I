@@ -13,5 +13,4 @@ router.post("/", livrosController.criarLivro.bind(livrosController));
 router.put("/:id", livrosController.atualizarLivro.bind(livrosController));
 router.delete("/:id", livrosController.removerLivro.bind(livrosController));
 
-
 module.exports = router;

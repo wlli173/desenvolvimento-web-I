@@ -2,21 +2,27 @@ const Livro = require("../models/livro.model");
 const db = require("../database/sqlite");
 
 class LivrosRepository {
+
   async findAll() {
+    console.log("Executando query no banco...");
     const rows = await db.all("SELECT * FROM livros ORDER BY id ASC");
+    console.log("Resultados encontrados:", rows.length);
+    console.log("Dados:", rows);
     return rows.map(r => Livro.fromJSON(r));
   }
+
   async findById(id) {
     const row = await db.get("SELECT * FROM livros WHERE id = ?", [id]);
     return row ? Livro.fromJSON(row) : null;
   }
+
   async create(data) {
     const novo = new Livro({ id: null, ...data });
     const res = await db.run(
       "INSERT INTO livros (titulo, autor, categoria, ano, editora, numeroPaginas) VALUES (?, ?, ?, ?, ?, ?)",
-      [novo.titulo, novo.autor, novo.categoria, novo.ano]
+      [novo.titulo, novo.autor, novo.categoria, novo.ano, novo.editora || null, novo.numeroPaginas || null]
     );
-    return this.findById(res.id);
+    return this.findById(res.lastInsertRowid); // Correção aqui para pegar o último ID inserido
   }
 
   async update(id, dados) {

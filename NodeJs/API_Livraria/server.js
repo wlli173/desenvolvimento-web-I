@@ -7,5 +7,5 @@ const PORT = process.env.PORT || 3000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 app.listen(PORT, () =>{
-    console.log('Servidor rodando na porta ${PORT} (${NODE_ENV})');
+    console.log(`Servidor iniciado na porta ${PORT} (${NODE_ENV})`);
 });
