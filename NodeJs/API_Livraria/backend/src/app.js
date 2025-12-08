@@ -4,12 +4,14 @@ db.init(); // garante que a tabela exista antes das rotas
 
 // Todas as rotas da aplicação (centralizadas)
 const routes = require("./routes");
+const authRoutes = require("./routes/auth.routes");
 
 // Configura o middleware de tratamento de erros
 const errorHandler = require("./middlewares/errorHandler");
 
 // Configura as rotas com prefixo /api
 app.use("/api", routes);
+app.use("/api/auth", authRoutes);
 
 // Middleware de tratamento de erros
 app.use(errorHandler);

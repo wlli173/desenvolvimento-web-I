@@ -1,4 +1,3 @@
-// frontend/src/components/LivroForm.jsx
 import React, { useState, useEffect } from 'react';
 import './LivroForm.css';
 
@@ -7,7 +6,9 @@ const LivroForm = ({ livro, onSubmit, onCancel }) => {
     titulo: '',
     autor: '',
     ano: '',
-    editora: ''
+    editora: '',
+    categoria: '',
+    numeroPaginas: ''
   });
 
   useEffect(() => {
@@ -16,7 +17,18 @@ const LivroForm = ({ livro, onSubmit, onCancel }) => {
         titulo: livro.titulo || '',
         autor: livro.autor || '',
         ano: livro.ano || '',
-        editora: livro.editora || ''
+        editora: livro.editora || '',
+        categoria: livro.categoria || '',
+        numeroPaginas: livro.numeroPaginas ?? ''
+      });
+    } else {
+      setFormData({
+        titulo: '',
+        autor: '',
+        ano: '',
+        editora: '',
+        categoria: '',
+        numeroPaginas: ''
       });
     }
   }, [livro]);
@@ -36,6 +48,7 @@ const LivroForm = ({ livro, onSubmit, onCancel }) => {
       <div className="livro-form-container">
         <h2>{livro ? 'Editar Livro' : 'Novo Livro'}</h2>
         <form onSubmit={handleSubmit}>
+          
           <div className="input-group">
             <label htmlFor="titulo">Título *</label>
             <input
@@ -71,6 +84,31 @@ const LivroForm = ({ livro, onSubmit, onCancel }) => {
               required
               min="1000"
               max="9999"
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="categoria">Categoria *</label>
+            <input
+              type="text"
+              id="categoria"
+              name="categoria"
+              value={formData.categoria}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="numeroPaginas">Número de páginas *</label>
+            <input
+              type="number"
+              id="numeroPaginas"
+              name="numeroPaginas"
+              value={formData.numeroPaginas}
+              onChange={handleChange}
+              required
+              min="1"
             />
           </div>
 

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const LivroRepository = require("./repositories/livros.repository"); // ajuste o caminho se necessário
-const db = require("./database/sqlite");  // Supondo que o código de inicialização esteja no arquivo db.js
+const LivroRepository = require("./repositories/livros.repository"); 
+const db = require("./database/sqlite");  
 
 async function migrarLivros() {
 
