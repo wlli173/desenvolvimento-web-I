@@ -1,4 +1,3 @@
-/* frontend/src/pages/Livros.css */
 .livros-header {
   display: flex;
   justify-content: space-between;
@@ -9,6 +8,7 @@
 .livros-header h1 {
   margin: 0;
   font-size: 28px;
+  color: var(--text-primary);
 }
 
 .livros-grid {
@@ -21,13 +21,14 @@
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  background: white;
+  background: var(--bg-elev);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-1);
+  color: var(--muted);
 }
 
 .empty-state p {
   font-size: 18px;
-  color: #666;
+  color: var(--muted);
   margin-bottom: 20px;
 }

@@ -15,7 +15,7 @@ class AuthController {
         return res.status(400).json({ erro: "Preencha todos os campos obrigatórios." });
       }
 
-      const existingUser = await this.usersRepo.findByUsername(username);
+      const existingUser = await this.usersRepo.findByEmail(username);
       if (existingUser) {
         return res.status(409).json({ erro: "Usuário já existe." });
       }

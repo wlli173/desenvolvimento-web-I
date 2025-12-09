@@ -1,0 +1,5 @@
+.fav-wrapper { display:flex; align-items:center; gap:8px; }
+.fav-wrapper.small .icon-btn { width:28px; height:28px; font-size:14px; }
+.fav-count { color:#666; font-size:12px; }
+.icon-btn.favorite-btn { background:#fff; border:1px solid #eee; border-radius:50%; width:32px; height:32px; cursor:pointer; }
+.icon-btn.favorite-btn.on { background:gold; color:#fff; border-color:gold; }

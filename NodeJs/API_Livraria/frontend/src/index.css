@@ -1,66 +1,145 @@
-/* frontend/src/index.css */
+/* Variáveis de tema — usadas por todo o app.
+   O ThemeProvider aplica .theme-light ou .theme-dark no <html> */
+:root {
+  --bg: #f6f7fb;
+  --bg-elev: #ffffff;
+  --bg-header: #ffffff;
+  --text-primary: #222;
+  --muted: #6b7280;
+  --accent: #0d6efd;
+  --accent-contrast: #ffffff;
+  --divider: #ececec;
+  --input-border: #ddd;
+  --danger: #dc3545;
+
+  --shadow-1: 0 2px 10px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  --transition-fast: 0.15s ease;
+}
+
+/* Tema claro explícito (opcional redundância) */
+.theme-light {
+  --bg: #f6f7fb;
+  --bg-elev: #ffffff;
+  --bg-header: #ffffff;
+  --text-primary: #222;
+  --muted: #6b7280;
+  --accent: #0d6efd;
+  --accent-contrast: #ffffff;
+  --divider: #ececec;
+  --input-border: #ddd;
+  --danger: #dc3545;
+}
+
+/* Tema escuro */
+.theme-dark {
+  --bg: #071226;
+  --bg-elev: #0b1726;
+  --bg-header: #061026;
+  --text-primary: #e6eef8;
+  --muted: #9aa8bd;
+  --accent: #3b82f6;
+  --accent-contrast: #061026;
+  --divider: rgba(255, 255, 255, 0.06);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --danger: #ff6b6b;
+}
+
+/* Reset / base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background-color: #f5f5f5;
+html,
+body,
+#root {
+  height: 100%;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container padrão */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+/* Botões — mantive suas classes, agora usando variáveis */
 .btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
+  background: transparent;
+  color: var(--text-primary);
+  box-shadow: none;
 }
 
+/* Primary */
 .btn-primary {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--accent);
+  color: var(--accent-contrast);
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  filter: brightness(0.95);
 }
 
+/* Secondary */
 .btn-secondary {
   background-color: #6c757d;
   color: white;
 }
 
 .btn-secondary:hover {
-  background-color: #5a6268;
+  filter: brightness(0.95);
 }
 
+/* Success / Danger */
 .btn-success {
   background-color: #28a745;
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  filter: brightness(0.95);
 }
 
 .btn-danger {
-  background-color: #dc3545;
+  background-color: var(--danger);
   color: white;
 }
 
 .btn-danger:hover {
-  background-color: #c82333;
+  filter: brightness(0.95);
 }
 
+/* Large / block */
+.btn-large {
+  font-size: 18px;
+  padding: 15px 40px;
+  display: inline-block;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Inputs */
 .input-group {
   margin-bottom: 15px;
 }
@@ -69,18 +148,33 @@ body {
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
+  color: var(--text-primary);
 }
 
-.input-group input {
+.input-group input,
+.input-group textarea,
+select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--bg-elev);
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+.input-group input:focus,
+.input-group textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(13, 110, 253, 0.12);
+}
+
+/* Alerts */
 .alert {
   padding: 12px 20px;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 20px;
 }
 
@@ -94,7 +188,41 @@ body {
   color: #155724;
 }
 
+/* Loading */
 .loading {
   text-align: center;
   padding: 40px;
+  color: var(--muted);
+}
+
+/* Small helpers */
+.text-muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.card {
+  background: var(--bg-elev);
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+  padding: 16px;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* small focus visible for accessibility */
+:focus {
+  outline: 2px solid transparent;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.25);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Minor responsive tweak */
+@media (max-width: 700px) {
+  .container {
+    padding: 0 12px;
+  }
 }

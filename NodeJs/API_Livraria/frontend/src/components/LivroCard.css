@@ -1,32 +1,126 @@
 /* frontend/src/components/LivroCard.css */
+
+/* Container geral (agora usa variáveis de tema) */
 .livro-card {
-  background: white;
+  background: var(--bg-elev);
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 0;
+  box-shadow: var(--shadow-1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.15s;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  color: var(--text-primary);
 }
 
 .livro-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-2);
 }
 
-.livro-card h3 {
-  margin: 0 0 15px 0;
-  font-size: 20px;
-  color: #333;
+/* Capa */
+.livro-cover {
+  width: 160px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* adapta fundo da capa em dark para melhorar contraste com placeholders */
+.theme-dark .livro-cover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+.livro-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Conteúdo */
+.livro-content {
+  padding: 18px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabeçalho com título e ações */
+.livro-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.livro-title {
+  flex: 1;
+  margin: 0;
+  font-size: 19px;
+  color: var(--text-primary);
+  line-height: 1.1;
+  word-break: break-word;
+}
+
+/* Agrupamento das ações no header (favorito + review) */
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* Ícone botão (reutilizável), agora baseado em variáveis */
+.icon-btn {
+  border: 0;
+  background: var(--bg-elev);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  color: var(--text-primary);
+  border: 1px solid var(--divider);
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01));
+}
+
+/* Favorito - cor distinta (gold) mas com contorno adaptável */
+.favorite-btn {
+  color: gold;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+/* review icon */
+.review-btn {
+  color: var(--muted);
+}
+
+/* Texto secundário do card */
 .livro-card p {
-  margin: 8px 0;
-  color: #666;
+  margin: 6px 0;
+  color: var(--muted);
   font-size: 14px;
 }
 
+/* Botões "Editar" e "Remover" */
 .card-actions {
-  margin-top: 20px;
+  margin-top: auto;
   display: flex;
+  justify-content: space-between;
   gap: 10px;
 }
 
@@ -34,4 +128,44 @@
   flex: 1;
   font-size: 13px;
   padding: 8px 12px;
+  border-radius: 6px;
+}
+
+/* Favorito wrapper e contador */
+.fav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fav-count {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .livro-card {
+    flex-direction: column;
+  }
+
+  .livro-cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .livro-content {
+    padding: 14px;
+  }
+
+  .header-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
 }

@@ -67,7 +67,10 @@ class LivrosController {
   // POST /api/livros
   async criarLivro(req, res, next) {
     try {
-      console.log('criarLivro - req.body =', req.body);
+      console.log('=== DEBUG criarLivro ===');
+      console.log('req.file:', req.file);
+      console.log('req.body:', req.body);
+      console.log('Arquivo salvo?', req.file ? `Sim: ${req.file.filename}` : 'Não');
 
       // Coerção / sanitização mínima
       const payload = {
@@ -80,16 +83,24 @@ class LivrosController {
         cover_image: undefined
       };
 
-      // Se veio arquivo, monta caminho público (assumindo app serve /uploads)
+      // Se veio arquivo, monta caminho público
       if (req.file) {
+        console.log('Usando arquivo enviado:', req.file.filename);
+        // MODIFICAÇÃO: Use URL relativa como no atualizarLivro
         payload.cover_image = `/uploads/${req.file.filename}`;
       } else if (req.body.coverUrl) {
+        console.log('Usando coverUrl:', req.body.coverUrl);
         payload.cover_image = req.body.coverUrl;
+      } else {
+        console.log('Nenhuma imagem fornecida');
+        payload.cover_image = null;
       }
+
+      console.log('Payload final:', payload);
 
       // validação rápida antes de enviar ao repo (evita erros óbvios)
       const missing = [];
-      ['titulo','autor','categoria','ano','numeroPaginas'].forEach(f => {
+      ['titulo', 'autor', 'categoria', 'ano', 'numeroPaginas'].forEach(f => {
         if (payload[f] === undefined || payload[f] === null || String(payload[f]).trim() === '') missing.push(f);
       });
       if (missing.length) {
@@ -116,7 +127,10 @@ class LivrosController {
       const id = Number(req.params.id);
       if (Number.isNaN(id)) return res.status(400).json({ erro: "ID inválido" });
 
-      console.log('atualizarLivro - id, body =', id, req.body);
+      console.log('=== DEBUG atualizarLivro ===');
+      console.log('ID:', id);
+      console.log('req.file:', req.file);
+      console.log('req.body:', req.body);
 
       // busca existente para mesclar (preservar cover_image se não for enviado)
       const existing = await this.repository.findById(id);
@@ -134,14 +148,20 @@ class LivrosController {
 
       // se veio novo arquivo, atualiza; se veio coverUrl, usa; senão preserva existing.cover_image
       if (req.file) {
+        console.log('Atualizando com novo arquivo:', req.file.filename);
         payload.cover_image = `/uploads/${req.file.filename}`;
       } else if (req.body.coverUrl) {
+        console.log('Atualizando com nova URL:', req.body.coverUrl);
         payload.cover_image = req.body.coverUrl;
+      } else {
+        console.log('Mantendo imagem existente:', existing.cover_image);
       }
+
+      console.log('Payload final para update:', payload);
 
       // validação mínima (mesma do criar)
       const missing = [];
-      ['titulo','autor','categoria','ano','numeroPaginas'].forEach(f => {
+      ['titulo', 'autor', 'categoria', 'ano', 'numeroPaginas'].forEach(f => {
         if (payload[f] === undefined || payload[f] === null || String(payload[f]).trim() === '') missing.push(f);
       });
       if (missing.length) {

@@ -1,10 +1,28 @@
+// frontend/src/services/api.js
 import axios from 'axios';
 
 const api = axios.create({
     baseURL: '/api',
     withCredentials: true,
-    headers: { 'Content-Type': 'application/json' }
 });
+
+// Interceptor para configurar headers dinamicamente
+api.interceptors.request.use(
+    (config) => {
+        // Se os dados forem FormData, NÃO defina Content-Type
+        // Se não for FormData, defina como application/json
+        if (!(config.data instanceof FormData)) {
+            config.headers['Content-Type'] = 'application/json';
+        } else {
+            // Para FormData, deixe o navegador definir o Content-Type
+            delete config.headers['Content-Type'];
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 api.interceptors.response.use(
     (response) => response,

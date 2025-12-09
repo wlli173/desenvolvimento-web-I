@@ -10,6 +10,13 @@ export default defineConfig({
       '/api': { 
         target: 'http://localhost:3333',
         changeOrigin: true,
+      },
+
+      //Novo proxy para arquivos enviados pelo backend
+      '/uploads': {
+        target: 'http://localhost:3333',
+        changeOrigin: true,
+        secure: false,     // permite http sem SSL
       }
     }
   }
